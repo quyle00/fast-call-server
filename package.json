@@ -1,0 +1,14 @@
+{
+  "name": "fast-call-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/server.js --ignore data/"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "aedes": "^0.51.3"
+  }
+}
