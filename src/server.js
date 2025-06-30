@@ -302,6 +302,26 @@ aedes.on('publish', (publishPacket, client) => {
         saveData(REQUESTS_FILE, listRequest);
         return;
     }
+
+    if (publishPacket.topic.includes('reset-department')) {
+        const departmentId = topicParts[1]
+        const department = findDepartmentById(departmentId);
+        if (department) {
+            department.rooms = [];
+            listRoom = [];
+            saveData(DEPARTMENTS_FILE, departments);
+            console.log(`Department ${departmentId} has been reset.`);
+        } else {
+            console.log(`Department ${departmentId} not found.`);
+        }
+        return;
+    }
+    if (publishPacket.topic === 'reset-requests') {
+        listRequest = [];
+        saveData(REQUESTS_FILE, listRequest);
+        console.log('All requests have been reset.');
+        return;
+    }
 });
 
 aedes.on('clientDisconnect', (client) => {
